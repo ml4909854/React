@@ -1,17 +1,20 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, decrement, reset, incrementByAmount } from './slice/slice';
 
 const App = () => {
-  const dispatch = useDispatch()
-  const count = useSelector(state=>state)
-  return (
-    <div>
-       <h1>{count}</h1>
-       <button onClick={(e)=>dispatch({type:"Increment"})}>Increment</button>
-       <button onClick={(e)=>dispatch({type:"Decrement"})}>Decrement</button>
-    
-    </div>
-  )
-}
+  const count = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
-export default App
+  return (
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <h1>Counter: {count}</h1>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+      <button onClick={() => dispatch(decrement())}>Decrement</button>
+      <button onClick={() => dispatch(reset())}>Reset</button>
+      <button onClick={() => dispatch(incrementByAmount(5))}>Increment by 5</button>
+    </div>
+  );
+};
+
+export default App;

@@ -1,13 +1,10 @@
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "../slice/slice.js"; // Ensure correct path
 
-import {createStore} from "redux"
+const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+});
 
-
-const reducer = (state=0 , action)=>{
-  switch (action.type) {
-    case "Increment": return state+1
-    case "Decrement":return state-1
-  
-    default: return state;
-  }
-}
-export const store = createStore(reducer)
+export default store;
